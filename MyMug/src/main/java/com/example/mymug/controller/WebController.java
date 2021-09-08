@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.mymug.data.Point;
+
 @Controller
 public class WebController {
 
@@ -19,7 +21,7 @@ public class WebController {
 	public String index() {
 		return "index";
 	}
-	
+	 
 	@GetMapping("/home")
 	public String home(Model model) {
 		model.addAttribute("title", "안녕하살법");
@@ -34,19 +36,25 @@ public class WebController {
 	}
 	
 	// name 이 중요하다고 하셨음
+	// 입력받은 userid point 값을 객체로 만든후 addAttribute 하여 View에 반환  
 	@PostMapping("/update")
 	public String updateResult(
 			@RequestParam(name="userid") String userid,
 			@RequestParam(name="point") int point,
 			Model model) {
-		model.addAttribute("result", userid + " " + point);
+		model.addAttribute("result", userid + "와" + point);
 		return "updatePoint";
 	}
 	
+	// 주소창의 userid 값을 받아와서 이 값을 String형 Model 객체로 만든다.
+	// 이 userid 객체를 View로 이동시킨다 
 	@GetMapping("/mypoint/{userid}")
 	public String myPoint(@PathVariable("userid") String userid, Model model) {
-		model.addAttribute("userid", userid);
-		model.addAttribute("point", 2000);
+		Point p = new Point(userid, 2000);
+		model.addAttribute("point", p);
+		
+//		model.addAttribute("userid", userid);
+//		model.addAttribute("point", 2000);
 		return "mypoint";
 	}
 
