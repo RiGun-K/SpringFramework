@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class WebController {
 
 	/* 클라이언트에서 요청이 들어오면 (주소로 접속, 이벤트 요청 등)
-	 * Controller에서 요청을 처리한다 
+	 * Controller에서 해당 View에 대한 처리를 한 후 다시 View를 반환한다.
 	 */
 	
-	// /templates/index.html을 반환
+	// return 값인 /templates/index.html을 반환
 	@GetMapping("/")
 	public String index() {
 		return "index";
