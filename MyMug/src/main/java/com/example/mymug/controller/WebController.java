@@ -57,6 +57,11 @@ public class WebController {
 //		model.addAttribute("point", 2000);
 		return "mypoint";
 	}
+	
+	@GetMapping("/adduser")
+	public String user() {
+		return "addUser";
+	}
 
 	
 }

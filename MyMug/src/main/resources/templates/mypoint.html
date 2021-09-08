@@ -3,10 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>My Point</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+ crossorigin="anonymous"></script>
 </head>
 <body>
 	<!--  8282/mypoint/*** 에 ***의 값을 받아와서 웹상에 출력 -->
 	<h2 th:text="|My Point :: ${point.userid}|"></h2>
-	<h3 th:text="${point.value}"></h3>
+	<h3 id="value" th:text="${point.value}"></h3>
+	<button id="refresh">새로고침</button>
+	<script th:inline="javascript">
+	/*<![CDATA[*/
+	const userid=/*[[${point.userid}]]*/
+	/*]]>*/
+	$(function(){
+		$('#refresh').click((event)=>{
+			const path='/api/mypoint/'+userid;
+			console.log(path);
+			$.ajax({
+				url:path,
+				type:'GET',
+				dataType:'json',
+			}).done((result)=>{
+				$('#value').text(result.value);
+			});
+		});
+	});
+	</script>
 </body>
 </html>
