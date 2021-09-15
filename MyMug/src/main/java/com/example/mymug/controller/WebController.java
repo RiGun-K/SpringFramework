@@ -50,7 +50,7 @@ public class WebController {
 	// 이 userid 객체를 View로 이동시킨다 
 	@GetMapping("/mypoint/{userid}")
 	public String myPoint(@PathVariable("userid") String userid, Model model) {
-		Point p = new Point(userid, 2000);
+		Point p = new Point(userid, 20);
 		model.addAttribute("point", p);
 		
 //		model.addAttribute("userid", userid);
