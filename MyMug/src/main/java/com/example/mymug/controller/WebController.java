@@ -7,11 +7,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.mymug.data.DataGenerator;
 import com.example.mymug.data.Point;
 
 @Controller
 public class WebController {
 
+	// Controller 에서 같이 실행됨 = DataGenerator에 있는 데이터가 전달
+	private DataGenerator data = new DataGenerator();
+	
 	/* 클라이언트에서 요청이 들어오면 (주소로 접속, 이벤트 요청 등)
 	 * Controller에서 해당 View에 대한 처리를 한 후 다시 View를 반환한다.
 	 */
@@ -68,7 +72,7 @@ public class WebController {
 	
 	@GetMapping("/classes")
 	public String getclasses(Model model) {
-		model.addAttribute("title", "수업리스트");
+		model.addAttribute("classList", data.getClassList());
 		return "class_list";
 	}
 	
@@ -77,6 +81,7 @@ public class WebController {
 	@GetMapping("/classes/{classId}")
 	public String getClassInfo(@PathVariable("classId") String classId,
 			Model model) {
+		model.addAttribute("classInfo", data.getClassInfo(classId));
 		return "class_info";
 	}
 	
