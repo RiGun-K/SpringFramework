@@ -5,6 +5,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	선생 정보
+	<div th:if="${teacherInfo!=null}">
+		<h2 th:text="${classInfo.className}"></h2>
+		<a th:text="${classInfo.teacherName}"
+		   th:href="@{/teachers/{id}(id=${classInfo.teacherId})}"></a>
+	</div>
+	<div th:if="${classInfo==null}">
+		<h2>존재하지 않는 과목입니다.</h2>
+	</div>
 </body>
 </html>

@@ -19,8 +19,9 @@ public class TeacherVO {
 		List<ClassVO> teachClasses) {
 		
 		this.teacherId = teacherId;
-		this.teachClasses = teachClasses;
+		this.teacherName = teacherName;
 		this.teacherDescription = teacherDescription;
+		this.teachClasses = teachClasses;
 		}
 
 

@@ -5,6 +5,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2 th:text="${title}"></h2>
+	<h2>First Study = 개설과목</h2>
+	<div th:if="${classList!=null}">
+		<table>
+			<thead>
+				<tr>
+					<th> 과목코드 </th>
+					<th> 이름 </th>
+					<th> 선생님 </th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- 임의의 변수이름 c -->
+				<tr th:each="c : ${classList}">
+					<td>
+						<a th:text="${c.classId}"
+					  	   th:href="@{/classes/{id}(id=${c.classId})}"></a>
+					</td>
+					<td th:text="${c.className}"></td>
+					<td>
+						<a th:text="${c.teacherName}"
+						   th:tref="@{/teachers/{id}(id=${c.teacherId})}"></a>
+					</td>
+				</tr>	
+			</tbody>
+		</table>
+	</div>
+	<div th:if="${classList==null}">개설 과목이 없습니다.</div>
 </body>
 </html>

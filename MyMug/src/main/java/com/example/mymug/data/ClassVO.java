@@ -12,8 +12,10 @@ public class ClassVO {
 	public String teacherName;
 	
 	// 持失切 識情
-	public ClassVO(String classId, String className, String classDescription, int maxStudent,
-				   String teacherId, String teacherName)
+	public ClassVO() {}
+	
+	public ClassVO(String classId, String className, String classDescription,
+				   int maxStudent, String teacherId, String teacherName)
 	{
 		this.classId = classId;
 		this.className = className;

@@ -87,12 +87,14 @@ public class WebController {
 	
 	@GetMapping("/teachers")
 	public String getTeachers(Model model) {
+		model.addAttribute("teacherList", data.getTeacherList());
 		return "teacher_list";
 	}
 	
 	@GetMapping("/teachers/{teacherId}")
 	public String getTeacherInfo(@PathVariable("teacherId") String teacherId,
 			Model model) {
+		model.addAttribute("teacherInfo", data.getTeacherInfo(teacherId));
 		return "teacher_info";
 	}
 	
