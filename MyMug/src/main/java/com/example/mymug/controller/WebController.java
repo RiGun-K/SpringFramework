@@ -64,15 +64,17 @@ public class WebController {
 	}
 ///////////////////////////////////////////////////////////////////
 	
-	// class_list에는 수업정보를 주어야됨으로 Model만 주면됨
+	// class_list 에는 수업정보를 주어야됨으로 Model만 주면됨
 	
 	@GetMapping("/classes")
 	public String getclasses(Model model) {
 		return "class_list";
 	}
 	
+	// class_info 에는 classId 값을 받아와야하기 때문에 @PathVariable 작성 
+	
 	@GetMapping("/classes/{classId}")
-	public String getCLassInfo(@PathVariable("classId") String classId,
+	public String getClassInfo(@PathVariable("classId") String classId,
 			Model model) {
 		return "class_info";
 	}
