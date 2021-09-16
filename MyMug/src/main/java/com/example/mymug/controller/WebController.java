@@ -62,7 +62,32 @@ public class WebController {
 	public String user() {
 		return "addUser";
 	}
-
+///////////////////////////////////////////////////////////////////
+	
+	// class_list에는 수업정보를 주어야됨으로 Model만 주면됨
+	
+	@GetMapping("/classes")
+	public String getclasses(Model model) {
+		return "class_list";
+	}
+	
+	@GetMapping("/classes/{classId}")
+	public String getCLassInfo(@PathVariable("classId") String classId,
+			Model model) {
+		return "class_info";
+	}
+	
+	@GetMapping("/teachers")
+	public String getTeachers(Model model) {
+		return "teacher_list";
+	}
+	
+	@GetMapping("/teachers/{teacherId}")
+	public String getTeacherInfo(@PathVariable("teacherId") String teacherId,
+			Model model) {
+		return "teacher_info";
+	}
+	
 	
 	
 }
