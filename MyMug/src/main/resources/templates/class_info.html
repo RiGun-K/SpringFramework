@@ -5,11 +5,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- a th 는 @없이(고정주소) , th는 @추가(가변주소) -->
 	<div th:if="${classInfo!=null}">
 		<h2 th:text="${classInfo.className}"></h2>
+		<a th:text="${classInfo.teacherName}"
+		   th:href="@{/teachers/{id}{id=${classInfo.teacherId}}}"></a>
 	</div>
-	<div th:if="${classInfo==null">
+	<div th:if="${classInfo==null}">
 		<h2>존재하지 않는 과목입니다.</h2>
 	</div>
+	
+	<!-- 수강신청하기 버튼 추가 -->
 </body>
 </html>
