@@ -6,12 +6,18 @@
 </head>
 <body>
 	<div th:if="${teacherInfo!=null}">
-		<h2 th:text="${classInfo.className}"></h2>
-		<a th:text="${classInfo.teacherName}"
-		   th:href="@{/teachers/{id}(id=${classInfo.teacherId})}"></a>
+		<h2> 선생님 소개</h2>
+		<h3 th:text="${teacherInfo.teacherName}"></h3>
+		<ul>
+			<!-- 가르치는 수업은 배열이므로 each 반복문 실행 -->
+			<!-- teachClasses를 받아와야 함 !  -->
+			<li th:each="c:${teacherInfo.teachClasses}">
+				// 링크 추가
+			</li>
+		</ul>
 	</div>
-	<div th:if="${classInfo==null}">
-		<h2>존재하지 않는 과목입니다.</h2>
+	<div th:if="${teacherInfo==null}">
+		<h2>잘못된 접근입니다.</h2>
 	</div>
 </body>
 </html>
