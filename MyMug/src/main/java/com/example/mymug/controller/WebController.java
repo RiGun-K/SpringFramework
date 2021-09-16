@@ -68,6 +68,7 @@ public class WebController {
 	
 	@GetMapping("/classes")
 	public String getclasses(Model model) {
+		model.addAttribute("title", "수업리스트");
 		return "class_list";
 	}
 	
