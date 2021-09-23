@@ -12,7 +12,8 @@
 			<!-- 가르치는 수업은 배열이므로 each 반복문 실행 -->
 			<!-- teachClasses를 받아와야 함 !  -->
 			<li th:each="c:${teacherInfo.teachClasses}">
-				// 링크 추가
+				<a th:text="@{c.className}" 
+				   th:href="@{/classes/{classId}(classId=${c.classId})}"></a>
 			</li>
 		</ul>
 	</div>
