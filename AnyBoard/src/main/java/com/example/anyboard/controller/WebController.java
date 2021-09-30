@@ -32,7 +32,7 @@ public class WebController {
 		return "posts";
 	}
 	
-	@GetMapping("/posts/{postId")
+	@GetMapping("/posts/{postId}")
 	public String getPost(@PathVariable("postId") int postId) {
 		return "post";
 	}
