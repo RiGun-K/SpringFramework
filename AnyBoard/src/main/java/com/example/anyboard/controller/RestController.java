@@ -1,4 +1,4 @@
-package com.example.anyboard.anyboard;
+package com.example.anyboard.controller;
 
 public class RestController {
 
