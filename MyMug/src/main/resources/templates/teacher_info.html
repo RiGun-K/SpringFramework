@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:if="${teacherInfo!=null}">
+		<h2> 선생님 소개</h2>
+		<h3 th:text="${teacherInfo.teacherName}"></h3>
+		<ul>
+			<!-- 가르치는 수업은 배열이므로 each 반복문 실행 -->
+			<!-- teachClasses를 받아와야 함 !  -->
+			<li th:each="c:${teacherInfo.teachClasses}">
+				<a th:text="@{c.className}" 
+				   th:href="@{/classes/{classId}(classId=${c.classId})}"></a>
+			</li>
+		</ul>
+	</div>
+	<div th:if="${teacherInfo==null}">
+		<h2>잘못된 접근입니다.</h2>
+	</div>
+</body>
+</html>
