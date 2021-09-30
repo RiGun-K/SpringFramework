@@ -17,4 +17,8 @@ public class Member {
 	// DB 내 member 테이블 행 선언
 	private String memberId;
 	private String password;
+	
+	// getter setter primarykey 추가
+	// 생성자 추가 
+	// 다음주에 post 클래스까지 만들어오기 
 }
