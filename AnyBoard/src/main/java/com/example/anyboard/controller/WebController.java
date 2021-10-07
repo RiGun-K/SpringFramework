@@ -3,6 +3,11 @@ package com.example.anyboard.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.anyboard.data.Result;
+
 
 @Controller
 public class WebController {
@@ -36,4 +41,6 @@ public class WebController {
 	public String getPost(@PathVariable("postId") int postId) {
 		return "post";
 	}
+	
+	
 }
