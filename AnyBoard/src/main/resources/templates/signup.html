@@ -2,9 +2,35 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+
+<!-- jQuery 소스 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 <title>Insert title here</title>
 </head>
 <body>
+	<input type="text" id="memberId" placeholder="ID를 입력하세요">
+	<input type="password" id="password" placeholder="비밀번호">
+	<button id="save">저장</button>
 
+	<!-- 버튼(#save)이 클릭됬을때, 아이디,패스워드 읽어오자  -->
+	<!-- if문을 사용하여 input에 빈칸일경우 alert로 return하는 코드 작성 -->
+	<script>
+		$(()=> {
+			$('#save').on('click',()=>{
+				const memberId = $('#memberId').val();
+				const password = $('#password').val();
+				
+				$.ajax({
+					url:'/api/signup',
+					type:'',
+					dataType:'application/json',
+					data:json
+				})
+				.done((result)=>{ alert('회원 가입완료'); })
+				.fail((result)=>{ alert('회원 가입실패'); });
+			});
+		});
+	</script>
 </body>
 </html>

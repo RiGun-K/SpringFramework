@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.example.anyboard.data.Post;
 
 @Repository
-public interface PostRepository extends JpaRepository<Post, String> {
+public interface PostRepository extends JpaRepository<Post, Integer> {
 
 }
