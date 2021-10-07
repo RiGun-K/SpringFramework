@@ -1,5 +1,8 @@
 package com.example.anyboard.controller;
 
-public class RestController {
+import com.example.anyboard.data.Result;
 
+public class RestController {
+	Result result = new Result("ok");
+	return result;
 }

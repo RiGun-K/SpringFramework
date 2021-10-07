@@ -21,7 +21,7 @@ public class Post {
 	private int postId;
 	private String title;
 	private String body;
-	private LocalDateTime savedTime;	// 각각의 
+	private LocalDateTime savedTime;	// 시간,정보관련 클래스 (시간,정보를 계산해줌) 
 	
 	@ManyToOne(targetEntity=Member.class)
 	@JoinColumn(name="memberId")
