@@ -1,5 +1,11 @@
 package com.example.anyboard.repository;
 
-public class MemberRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.anyboard.data.Member;
+
+@Repository
+public interface MemberRepository extends JpaRepository<Member, String> {
 
 }
