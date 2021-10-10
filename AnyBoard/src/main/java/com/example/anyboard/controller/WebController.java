@@ -1,5 +1,6 @@
 package com.example.anyboard.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,10 +12,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.anyboard.data.Hello;
 import com.example.anyboard.data.Result;
+import com.example.anyboard.repository.ResultRepository;
 
 
 @Controller
 public class WebController {
+	
+	@Autowired
+	ResultRepository resultRepository;
+	
 
 	@GetMapping("/hello-mvc")
 	public String helloMvc(@RequestParam("name") String ok, Model model) {
