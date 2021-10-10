@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add User</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+ crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+$(function(){
+	$('#send').click((event)=>{
+		const userid=$('#userid').val();
+		const name=$('#username').val();
+		const path='/api/adduser';
+		const json = JSON.stringify({
+			'userid':userid,
+			'name':name
+		});
+		$.ajax({
+			url.path,
+			type:'POST',
+			contentType: 'application/json',
+			data:json
+		}).done((result)=>{
+			console.log(result.userid);
+			$('#result').text(result.userid);
+		});
+	});	
+});
+</script>
+<input id="userid" type="text" placeholder="아이디">
+<input id="username" type="text" placeholder="이름">
+<button id="send">저장</button>
+<p id="result"></p>
+</body>
+</html>

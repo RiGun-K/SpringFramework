@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 사용자의 포인트를 업데이트 할 관리자용 웹 -->
+	<!-- userid , point에 값을 입력하여 저장후 출력 -->
+	<form action="/update" method="post">
+		<input type="text" name="userid">
+		<input type="text" name="point">
+		<input type="submit" value="저장">
+	</form> 
+	
+	<p th:text="${result}"></p>
+</body>
+</html>
