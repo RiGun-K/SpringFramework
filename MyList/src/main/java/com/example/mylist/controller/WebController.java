@@ -9,7 +9,7 @@ public class WebController {
 
 	@GetMapping
 	public String index(Model model) {
-		model.addAttribute("title", "¾È³çÇÏ»ì¹ı");
+		model.addAttribute("title", "ê¹ƒí—ˆë¸Œ ì—°ë™ ì™„ë£Œ ");
 		model.addAttribute("img1", "images/dd.jpg");
 		return "index";
 	}
