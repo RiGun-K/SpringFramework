@@ -20,4 +20,14 @@ public class WebController {
 			model.addAttribute("img1", "images/dd.jpg");
 			return "home";
 		}
+		
+		@GetMapping("/menus") 
+		public String menus() {
+			return "menus";
+		}
+		
+		@GetMapping("/crews")
+		public String crews() {
+			return "crews";
+		}
 }
