@@ -3,9 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+ crossorigin="anonymous"></script>
 </head>
 <body>
-	<h2 th:text="|My Point 는 :: ${userid}|"></h2>
-	<h3 id="value" th:text="${value}"></h3>
+	<!-- Point 클래스 -> Controller -> Model -> View 반환 -->
+	
+	<h2 th:text="|My Point 는 :: ${point.userid}|"></h2>
+	<h3 id="value" th:text="${point.value}"></h3>
+	
+	<!-- RESTful API 사용 -->
+	
+	<button id="refresh">새로고침</button>
+	<script th:inline="javascript">
+	/*<![CDATA[*/
+	const userid=/*[[${point.userid}]]*/
+	/*]]>*/
+	$(function(){
+		$('#refresh').click((event)=>{
+			const path='/api/mypoint/'+userid;
+			console.log(path);
+			$.ajax({
+				url:path,
+				type:'GET',
+				dataType:'json',
+			}).done((result)=>{
+				$('#value').text(result.value);	
+				// <3000> => <5000> (ApiController 에 해당하는 value 값으로 변경)
+			});
+		});
+	});
+	</script>
 </body>
 </html>

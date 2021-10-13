@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.mylist.data.Point;
+
 @Controller
 public class WebController {
 
@@ -33,8 +35,14 @@ public class WebController {
 	
 	@GetMapping("/mypoint/{userid}")
 	public String myPoint(@PathVariable("userid") String userid, Model model) {
-			model.addAttribute("userid", userid);
-			model.addAttribute("point", 2000);
+			Point p = new Point(userid, 3000);
+			model.addAttribute("point", p);
 			return "mypoint";
+	}
+	
+	
+	@GetMapping("/adduser")
+	public String user() {
+		return "addUser";
 	}
 }
