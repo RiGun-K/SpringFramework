@@ -24,7 +24,7 @@ import com.example.anyboard.repository.ResultRepository;
 public class ApiController {
 	
 	@Autowired
-	MemberRepository memberRepository;
+	private MemberRepository memberRepository;
 	
 	@PostMapping("/posts")
 	public Result addPost(@RequestBody Post post) {
