@@ -1,5 +1,9 @@
 package com.example.mylist.controller;
 
+import java.util.Optional;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,10 +12,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mylist.data.Point;
+import com.example.mylist.data.User;
+import com.example.mylist.repository.MenuRepository;
+import com.example.mylist.repository.UserRepository;
 
 @Controller
 public class WebController {
 
+	@Autowired
+	UserRepository userRepository;
+	@Autowired
+	MenuRepository menuRepository;
+	
 	@GetMapping
 	public String index(Model model) {
 		model.addAttribute("title", "깃허브 연동 완료 ");
@@ -32,11 +44,14 @@ public class WebController {
 		return "updatePoint";	
 	}
 	
-	
+	// {userid} 값이 DB 내 userid 값과 동일하다면 값을 부여하고 리턴 , 다르면 접속불가 
 	@GetMapping("/mypoint/{userid}")
 	public String myPoint(@PathVariable("userid") String userid, Model model) {
-			Point p = new Point(userid, 3000);
-			model.addAttribute("point", p);
+			Optional<User> user = userRepository.findById(userid);
+			if (user.isPresent()) {
+				Point p = new Point(userid, user.get().getPoint());
+				model.addAttribute("point", p);
+			}
 			return "mypoint";
 	}
 	
@@ -44,5 +59,14 @@ public class WebController {
 	@GetMapping("/adduser")
 	public String user() {
 		return "addUser";
+	}
+	
+	@GetMapping("/menus")
+	public String menus(@RequestParam(required=false) String name, Model model) {
+		if(name==null || name.isEmpty())
+			model.addAttribute("menus", menuRepository.findAll());
+		else
+			model.addAttribute("menus", menuRepository.findByNameContains(name));	
+		return "menus";
 	}
 }
