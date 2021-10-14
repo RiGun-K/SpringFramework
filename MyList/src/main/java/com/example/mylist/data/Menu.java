@@ -32,4 +32,13 @@ public class Menu {
 	@ManyToOne(targetEntity=Crew.class)
 	@JoinColumn(name="crew")
 	private Crew crew;
+	
+	public Menu(){}
+	public Menu(int menuid, String name, int price) {
+		this.menuid = menuid;
+		this.name = name;
+		this.price = price;
+	}
+	
+	
 }
