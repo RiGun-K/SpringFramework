@@ -34,6 +34,7 @@ public class ApiController {
 	@PostMapping("/adduser")
 	public User addUser(@RequestBody User user) {
 		// 추후 DB 코드 추가 = 아이디,이름 값이 저장버튼으로 넘어온 데이터를 받아서 DB에 Insert
+		userRepository.save(user);
 		return user;
 	}
 	
@@ -43,18 +44,6 @@ public class ApiController {
 		return userRepository.findAll();
 	}
 	
-//	@GetMapping("/users2")
-//	public List<User> getUsers2() {
-//		userRepository.save("2","김리건",2);
-//		return userRepository.findAll();
-//	}
-//	
-//	public void addUser() {
-//		User user = new User();
-//		user.setName("장성규");
-//		user.setPoint(119);
-//		
-//		userRepository.save(user);
-//	}
+
 	
 }

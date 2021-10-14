@@ -18,7 +18,7 @@ import com.example.mylist.data.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 
-	void save(String userid, String name, int point);
+
 
 	
 
