@@ -27,10 +27,10 @@ public class WebController {
 		model.addAttribute("name", ok);
 		return "hello-template";
 		
-		// @RequestParam À¸·Î ${name}À» ¹Þ¾Æ¿Í¼­ Model È­ ½ÃÅ²ÈÄ 
-		// addAttribute ·Î ÁöÁ¤ÇÑ ±× °ªÀ» ¹Þ¾Æ¿Í¼­ Html ·Î ¹ÝÈ¯ÇÑ´Ù.
+		// @RequestParam ï¿½ï¿½ï¿½ï¿½ ${name}ï¿½ï¿½ ï¿½Þ¾Æ¿Í¼ï¿½ Model È­ ï¿½ï¿½Å²ï¿½ï¿½ 
+		// addAttribute ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Í¼ï¿½ Html ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
 		
-		// Get ¹æ½ÄÀ¸·Î '?' ·Î ÆÄ¶ó¹ÌÅÍ¸¦ ³Ñ°ÜÁØ´Ù. 
+		// Get ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ '?' ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ñ°ï¿½ï¿½Ø´ï¿½. 
 		// = localhost/hello-mvc?name={ ... } 
 	}
 	
@@ -47,11 +47,11 @@ public class WebController {
 //		hello.setName(name);
 		return hello;
 		
-		// 'hello' ¶ó´Â °´Ã¼ »ý¼º
+		// 'hello' ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		
-		// Hello Å¬·¡½º¸¦ Data ÆÐÅ°Áö¿¡ »ý¼ºÇÏ¿© ºÒ·¯¿ÔÀ½.
+		// Hello Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Data ï¿½ï¿½Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½.
 		 
-		// ¿©±â¿¡ static class ??? ÇÏ¿©¼­ ¾µ ¼öµµ ÀÖÀ½ 
+		// ï¿½ï¿½ï¿½â¿¡ static class ??? ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	}
 	
 	
@@ -61,7 +61,7 @@ public class WebController {
 	}
 	
 	@GetMapping("/signup")
-	public String getSignup() {
+	public String member() {
 		return "signup";
 	}
 	

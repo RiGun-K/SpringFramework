@@ -9,13 +9,13 @@ import com.example.anyboard.data.Result;
 public interface ResultRepository extends JpaRepository<Result, String> {
 
 	
-	public static void create() {
-		Result result = new Result();
-		
-		result.setPassword("!23");
-		
-		Result result = ResultRepository.save(result);
-		
-	}
+//	public static void create() {
+//		Result result = new Result();
+//		
+//		result.setPassword("!23");
+//		
+//		Result result = ResultRepository.save(result);
+//		
+//	}
 	
 }

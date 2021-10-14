@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="EUC-KR">
 
 <!-- jQuery 소스 -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+ crossorigin="anonymous"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -20,12 +21,15 @@
 			$('#save').on('click',()=>{
 				const memberId = $('#memberId').val();
 				const password = $('#password').val();
-				
+				const path = '/api/signup';
+				const json = JSON.stringify({
+					'memberId':memberId,
+					'password':password
+				});
 				$.ajax({
-					contentType:'',
-					url:'/api/signup',
-					type:'',
-					dataType:'application/json',
+					url:path,
+					type:'POST',
+					contentType: 'application/json',
 					data:json
 				})
 				.done((result)=>{ alert('회원 가입완료'); })
