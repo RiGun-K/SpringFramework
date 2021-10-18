@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.anyboard.data.Hello;
 import com.example.anyboard.data.Result;
+import com.example.anyboard.repository.PostRepository;
 import com.example.anyboard.repository.ResultRepository;
 
 
@@ -19,7 +20,7 @@ import com.example.anyboard.repository.ResultRepository;
 public class WebController {
 	
 	@Autowired
-	ResultRepository resultRepository;
+	PostRepository postRepository;
 	
 
 	@GetMapping("/hello-mvc")

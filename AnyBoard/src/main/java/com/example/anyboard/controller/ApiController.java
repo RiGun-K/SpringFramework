@@ -14,6 +14,7 @@ import com.example.anyboard.data.Member;
 import com.example.anyboard.data.Post;
 import com.example.anyboard.data.Result;
 import com.example.anyboard.repository.MemberRepository;
+import com.example.anyboard.repository.PostRepository;
 import com.example.anyboard.repository.ResultRepository;
 
 
@@ -26,11 +27,13 @@ public class ApiController {
 	@Autowired
 	private MemberRepository memberRepository;
 	
+	@Autowired
+	private PostRepository postRepository;
+	
 	@PostMapping("/posts")
-	public Result addPost(@RequestBody Post post) {
-		
-		Result result = new Result();
-		return result;	
+	public Post addPost(@RequestBody Post post) {
+			postRepository.save(post);
+			return post;
 	}
 	
 	@PostMapping("/signup")
