@@ -19,7 +19,7 @@ public class ResultTests {
 	void create() {
 		Result result = new Result();
 		
-		result.setPassword("123");
+		//result.setPassword("123");
 		
 		Result newResult = resultRepository.save(result);
 	}

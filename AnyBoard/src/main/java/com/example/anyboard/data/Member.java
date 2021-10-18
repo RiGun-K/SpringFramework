@@ -2,6 +2,8 @@ package com.example.anyboard.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -23,8 +25,9 @@ public class Member {
 	// DB �� member ���̺� �� ����
 	@Id
 	private String memberId;
-	@Column(length=30)  	// ������ �� �������� 
+	@Column(length=10)  	// ������ �� �������� 
 	private String password;
+
 	
 	public String getMemberId() {
 		return memberId;
@@ -38,6 +41,7 @@ public class Member {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	
 	Member() {}
 	Member(String memberId, String password) {
