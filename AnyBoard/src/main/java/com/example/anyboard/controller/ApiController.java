@@ -1,6 +1,8 @@
 package com.example.anyboard.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -31,10 +33,24 @@ public class ApiController {
 	private PostRepository postRepository;
 	
 	@PostMapping("/posts")
-	public Post addPost(@RequestBody Post post) {
-			postRepository.save(post);
-			return post;
+	public Result postPosts(@RequestBody Post post) {
+		Optional<Member> searchedMember = memberRepository.findById(post.getMember().getMemberId());
+		if(searchedMember.isPresent()) {
+			if(searchedMember.get().getPassword().equals(post.getMember().getPassword())) {
+				if(post.getSavedTime()==null)
+					post.setSavedTime(LocalDateTime.now());
+				postRepository.save(post);
+				return new Result("ok");
+				
+			} else { // 비번 틀림.
+				return new Result("ng");
+			}
+			
+		} else { // 등록되지 않은 사용자.
+			return new Result("ng");
+		}
 	}
+
 	
 	@PostMapping("/signup")
 	public Member addMember(@RequestBody Member member) {
