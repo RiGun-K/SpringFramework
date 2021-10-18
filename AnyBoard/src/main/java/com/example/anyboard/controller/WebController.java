@@ -48,7 +48,7 @@ public class WebController {
 //		hello.setName(name);
 		return hello;
 		
-		// 'hello' ��� ��ü ����
+		// 'hello' ��� ��ü ����d
 		
 		// Hello Ŭ������ Data ��Ű���� �����Ͽ� �ҷ�����.
 		 
