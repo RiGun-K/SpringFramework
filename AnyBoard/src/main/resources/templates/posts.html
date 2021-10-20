@@ -20,7 +20,7 @@
 		  	</tr>
     	</thead>
     	<tbody>
-    		<!-- Controller 에서 Model로 받은 posts 사용 -->
+    		<!-- Model로 받은 posts를 post변수로 사용 -->
       		<tr th:each="post : ${posts}">
       			<!-- post 클래스의 칼럼들의 데이터를 받아온다, 클릭시 해당 postId 주소로 이동 -->
 		        <td><a th:text="${post.postId}" th:href="@{/posts/{id}(id=${post.postId})}"></a></td>

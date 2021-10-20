@@ -66,12 +66,14 @@ public class ApiController {
 			//url 이 잘못된 경우.
 			return new Result("ng");
 		}
+		// get으로 가져오는게 아니라 클래스 내의 데이터이므로 findById(postId)
 		Optional<Post> searchedPost = postRepository.findById(postId);
 		if(searchedPost.isPresent()) {
 			Post post = searchedPost.get();
-			// 해당 게시글을 작성한 계정과 입력받은 계정이 일치한가
+			// 해당 게시글을 작성한 계정과 입력받은 계정이 일치한가 ( post의 Member(MemberId 외래키) + member의 MemberId )
 			if(post.getMember().getMemberId().equals(member.getMemberId()) &&
 					post.getMember().getPassword().equals(member.getPassword())) {
+				//**// 기본키만 삭제하는데 왜 해당 행전체가 삭제되는지 ?
 				postRepository.deleteById(postId);
 				return new Result("ok");
 			} else {
