@@ -32,6 +32,7 @@ public class Post {
 	
 	@ManyToOne(targetEntity=Member.class)
 	@JoinColumn(name="memberId")
+	// Member 클래스 
 	private Member member;
 
 	public int getPostId() {
