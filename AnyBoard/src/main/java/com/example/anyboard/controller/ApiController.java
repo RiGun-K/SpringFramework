@@ -40,7 +40,7 @@ public class ApiController {
 		// 멤버 테이블의 멤버아이디 칼럼이 있는지 없는지 찾아보기 
 		Optional<Member> searchedMember = memberRepository.findById(post.getMember().getMemberId());
 		if(searchedMember.isPresent()) {
-			// 객체끼리 값을 비교 ( 아이디와 비밀번호가 같은지 )
+			// 객체끼리 값을 비교 ( 비밀번호가 같은지 )
 			if(searchedMember.get().getPassword().equals(post.getMember().getPassword())) {
 				// 시간칼럼을 가져와서(get) 비었으면, 현재시간 저장(set)
 				if(post.getSavedTime()==null)
