@@ -6,7 +6,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,6 +56,30 @@ public class ApiController {
 		} else { // 등록되지 않은 사용자.
 			return new Result("ng");
 		}
+	}
+	
+	
+	@DeleteMapping("/posts/{postId}")
+	public Result deletePost(@PathVariable(name="postId", required=false) 
+			Integer postId,  @RequestBody Member member) {
+		if(postId==null) { 
+			//url 이 잘못된 경우.
+			return new Result("ng");
+		}
+		Optional<Post> searchedPost = postRepository.findById(postId);
+		if(searchedPost.isPresent()) {
+			Post post = searchedPost.get();
+			// 해당 게시글을 작성한 계정과 입력받은 계정이 일치한가
+			if(post.getMember().getMemberId().equals(member.getMemberId()) &&
+					post.getMember().getPassword().equals(member.getPassword())) {
+				postRepository.deleteById(postId);
+				return new Result("ok");
+			} else {
+				//게시글은 존재하나 작성자의 아이디가 틀렸거나 비밀번호가 틀린 경우 
+				return new Result("ng");
+			}
+		} else // 게시글이 존재하지 않는 경우 - 잘못된 아이디.
+			return new Result("ng");
 	}
 
 	
