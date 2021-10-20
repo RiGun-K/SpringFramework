@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.anyboard.data.Hello;
 import com.example.anyboard.data.Result;
 import com.example.anyboard.repository.PostRepository;
-import com.example.anyboard.repository.ResultRepository;
 
 
 @Controller
