@@ -21,38 +21,6 @@ public class WebController {
 	@Autowired
 	PostRepository postRepository;
 	
-
-	@GetMapping("/hello-mvc")
-	public String helloMvc(@RequestParam("name") String ok, Model model) {
-		model.addAttribute("name", ok);
-		return "hello-template";
-		
-		// @RequestParam ���� ${name}�� �޾ƿͼ� Model ȭ ��Ų�� 
-		// addAttribute �� ������ �� ���� �޾ƿͼ� Html �� ��ȯ�Ѵ�.
-		
-		// Get ������� '?' �� �Ķ���͸� �Ѱ��ش�. 
-		// = localhost/hello-mvc?name={ ... } 
-	}
-	
-	@GetMapping("/hello-string")
-	@ResponseBody
-	public String helloString(@RequestParam("name") String name) {
-		return "hello " + name;
-	}
-	
-	@GetMapping("/hello-api")
-	@ResponseBody
-	public Hello helloApi(@RequestParam("name") String name) {
-		Hello hello = new Hello(name);
-//		hello.setName(name);
-		return hello;
-		
-		// 'hello' ��� ��ü ����d
-		
-		// Hello Ŭ������ Data ��Ű���� �����Ͽ� �ҷ�����.
-		 
-		// ���⿡ static class ??? �Ͽ��� �� ���� ���� 
-	}
 	
 	
 	@GetMapping("/")
