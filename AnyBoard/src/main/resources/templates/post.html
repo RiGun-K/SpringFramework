@@ -11,7 +11,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	 <!-- post=postId 가 있다면 -->
+	 <!-- postId 가 있다면 -->
 	 <div th:if="${post}!=null">
 	 	<!-- postId 는 숨긴다. -->
 	    <input type="hidden" id="postId" th:value="${post.postId}">

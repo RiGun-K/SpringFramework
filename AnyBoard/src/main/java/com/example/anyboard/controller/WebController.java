@@ -56,7 +56,7 @@ public class WebController {
 	
 	@GetMapping("/posts/{postId}")
 	public String getPost(@PathVariable("postId") int postId, Model model) {
-		// 주소창의 postId 값이 DB에 postId 값과 같은가 
+		// 주소창의 postId 값이 <Post> 에 있는가 
 		Optional<Post> searchedPost = postRepository.findById(postId);
 		if(searchedPost.isPresent()) {
 			model.addAttribute("post", searchedPost.get());

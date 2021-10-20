@@ -84,6 +84,8 @@ public class ApiController {
 
 	
 	@PostMapping("/signup")
+	// 'POST'로 받았으므로 @RequestBody로 Data를 받아온다.
+	// public 뒤에, @RequestBody 뒤에는 해당 클래스명
 	public Member addMember(@RequestBody Member member) {
 		// 추후 DB 코드 추가 = 아이디,이름 값이 저장버튼으로 넘어온 데이터를 받아서 DB에 Insert
 		memberRepository.save(member);
@@ -93,14 +95,16 @@ public class ApiController {
 	// Put
 	@PutMapping("/password")
 	public Result putPassword(@RequestBody Member member) {
-		// 일단 해당 아이디를 가진 사용자가 있는지 찾는다.
+		// 받아온 데이터.MemberId가 Member테이블에 존재하는지 확인 
 		Optional<Member> searchedMember = memberRepository.findById(member.getMemberId());
 		
 		// 사용자가 존재하는 경우.
 		if(searchedMember.isPresent()) {
 			// DB에 저장된 그 사용자의 비번과 전달 받은 비번이 같다면 새 비밀번호를 비밀 번호로 저장.
 			if(searchedMember.get().getPassword().equals(member.getPassword())) {
+				// member 클래스의 Password에 넣어라. (Getter,Setter) 
 				member.setPassword(member.getNewPassword());
+				// DB에 넣어라 
 				memberRepository.save(member);
 				return new Result("ok");
 			}else {
