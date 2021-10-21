@@ -74,8 +74,7 @@ public class ApiController {
 			if(post.getMember().getMemberId().equals(member.getMemberId()) &&
 					post.getMember().getPassword().equals(member.getPassword())) {
 				//**// 기본키만 삭제하는데 왜 해당 행전체가 삭제되는지 ?
-				postRepository.deleteById(
-						postId);
+				postRepository.deleteById(postId);
 				return new Result("ok");
 			} else {
 				//게시글은 존재하나 작성자의 아이디가 틀렸거나 비밀번호가 틀린 경우 
