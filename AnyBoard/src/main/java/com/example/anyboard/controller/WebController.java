@@ -1,6 +1,9 @@
 package com.example.anyboard.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,48 +14,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.anyboard.data.Hello;
+import com.example.anyboard.data.Post;
 import com.example.anyboard.data.Result;
-import com.example.anyboard.repository.ResultRepository;
+import com.example.anyboard.repository.PostRepository;
 
 
 @Controller
 public class WebController {
 	
 	@Autowired
-	ResultRepository resultRepository;
+	PostRepository postRepository;
 	
-
-	@GetMapping("/hello-mvc")
-	public String helloMvc(@RequestParam("name") String ok, Model model) {
-		model.addAttribute("name", ok);
-		return "hello-template";
-		
-		// @RequestParam À¸·Î ${name}À» ¹Ş¾Æ¿Í¼­ Model È­ ½ÃÅ²ÈÄ 
-		// addAttribute ·Î ÁöÁ¤ÇÑ ±× °ªÀ» ¹Ş¾Æ¿Í¼­ Html ·Î ¹İÈ¯ÇÑ´Ù.
-		
-		// Get ¹æ½ÄÀ¸·Î '?' ·Î ÆÄ¶ó¹ÌÅÍ¸¦ ³Ñ°ÜÁØ´Ù. 
-		// = localhost/hello-mvc?name={ ... } 
-	}
-	
-	@GetMapping("/hello-string")
-	@ResponseBody
-	public String helloString(@RequestParam("name") String name) {
-		return "hello " + name;
-	}
-	
-	@GetMapping("/hello-api")
-	@ResponseBody
-	public Hello helloApi(@RequestParam("name") String name) {
-		Hello hello = new Hello(name);
-//		hello.setName(name);
-		return hello;
-		
-		// 'hello' ¶ó´Â °´Ã¼ »ı¼º
-		
-		// Hello Å¬·¡½º¸¦ Data ÆĞÅ°Áö¿¡ »ı¼ºÇÏ¿© ºÒ·¯¿ÔÀ½.
-		 
-		// ¿©±â¿¡ static class ??? ÇÏ¿©¼­ ¾µ ¼öµµ ÀÖÀ½ 
-	}
 	
 	
 	@GetMapping("/")
@@ -61,7 +33,7 @@ public class WebController {
 	}
 	
 	@GetMapping("/signup")
-	public String getSignup() {
+	public String member() {
 		return "signup";
 	}
 	
@@ -76,12 +48,19 @@ public class WebController {
 	}
 	
 	@GetMapping("/posts")
-	public String getPosts() {
+	public String getPosts(Model model) {
+		// ìµœì‹ ìˆœ
+		model.addAttribute("posts", postRepository.findAll(Sort.by(Sort.Direction.DESC, "savedTime")));
 		return "posts";
 	}
 	
 	@GetMapping("/posts/{postId}")
-	public String getPost(@PathVariable("postId") int postId) {
+	public String getPost(@PathVariable("postId") int postId, Model model) {
+		// ì£¼ì†Œì°½ì˜ postId ê°’ì´ <Post> ì— ìˆëŠ”ê°€ 
+		Optional<Post> searchedPost = postRepository.findById(postId);
+		if(searchedPost.isPresent()) {
+			model.addAttribute("post", searchedPost.get());
+		}
 		return "post";
 	}
 	

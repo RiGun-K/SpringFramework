@@ -10,21 +10,76 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+@Data
 @Entity
 @Table(name="post")
 public class Post {
 
-	// DB ³» post Å×ÀÌºí Çà ¼±¾ğ
+	// DB ï¿½ï¿½ post ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int postId;
 	private String title;
 	private String body;
-	private LocalDateTime savedTime;	// ½Ã°£,Á¤º¸°ü·Ã Å¬·¡½º (½Ã°£,Á¤º¸¸¦ °è»êÇØÁÜ) 
+	private LocalDateTime savedTime;	// ï¿½Ã°ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ (ï¿½Ã°ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) 
 	
 	@ManyToOne(targetEntity=Member.class)
 	@JoinColumn(name="memberId")
+	// Member í´ë˜ìŠ¤ 
 	private Member member;
+
+	public int getPostId() {
+		return postId;
+	}
+
+	public void setPostId(int postId) {
+		this.postId = postId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public LocalDateTime getSavedTime() {
+		return savedTime;
+	}
+
+	public void setSavedTime(LocalDateTime savedTime) {
+		this.savedTime = savedTime;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	
+
+
+	
+
+	
 	
 }

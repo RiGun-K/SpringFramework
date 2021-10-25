@@ -1,35 +1,22 @@
 package com.example.anyboard.data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import lombok.Getter;
-import lombok.Setter;
-
-
-@Getter
-@Setter
-@Entity
-@Table(name="result")
+// @Entity 정의 하지 않음 , Repository 또한 생성하지 않았음 ! 
 public class Result {
+	
+	private String result;
+	
+	public Result() { }
+	public Result(String result) {
+		this.result = result;
+	}
 
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String title;
-	@Column
-	private int password;
-	
-	
-	
-	
-	
-	
+	public String getResult() {
+		return result;
+	}
 
-	
+	public void setResult(String result) {
+		this.result = result;
+	}
 	
 }
+

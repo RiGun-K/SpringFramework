@@ -1,10 +1,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+	<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+ 	<!-- BootStemp -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	�Խñ� ��� �� ��� !!
+	<div class="col-md-15">
+    <div class="col-md-5">
+        <form>
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+            </div>
+            
+            <div class="form-group">
+                <label for="content"> 내용 </label>
+                <textarea class="form-control" rows="4" id="body" placeholder="내용을 입력하세요"></textarea>
+            </div>
+        </form>
+        
+    <form class="form-horizontal">
+  		<div class="form-group">
+    		<label for="inputEmail3" class="col-sm-2 control-label">ID</label>
+    			<div class="col-sm-10">
+      		<input type="email" class="form-control" id="memberId" placeholder="아이디를 입력하세요">
+   				</div>
+  		</div>
+  		<div class="form-group">
+   			 <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    			<div class="col-sm-10">
+     		 <input type="password" class="form-control" id="password" placeholder="패스워드를 입력하세요">
+   				 </div>
+ 		 </div>
+  		 <div class="form-group">
+    		<div class="col-sm-offset-2 col-sm-10">
+    		  	<div class="checkbox">
+     	   			<label>
+        	  		  <input type="checkbox"> Remember me
+       	   			</label>
+      			</div>
+   			</div>
+  		</div>
+  		
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">취소</button>
+      <button type="button" class="btn btn-primary" id="save">등록</button>
+    </div>
+  </div>
+	</form>
+	
+	<script>
+	$(()=>{
+	    $('#save').on('click', ()=>{
+	    	// '#memberId' 는 달라도 되지만 const 변수이름은 DB와 같아야 함 ! 
+	      const memberId=$('#memberId').val();
+	      const password=$('#password').val();
+	      const title=$('#title').val();
+	      const body=$('#body').val();
+	      
+	      // || = 이거나 , && 둘다 
+	      if(memberId==''||password==''){
+	        alert('게시글을 등록하려면 작성자의 아이디와 비밀번호를 입력해야 합니다.');
+	        return;
+	      }
+	      if(title==''|| body==''){
+	          alert('제목과 본문을 모두 입력해주세요.');
+	          return;
+	      }
+	      
+	      const url = '/api/posts';
+	      const post= {
+	    		  title:title,
+	    		  body:body,
+	    		  member:{
+	    			  memberId:memberId,
+	    			  password:password
+	    				  }
+	      }
+	    	
+	      $.ajax({
+	    	  url:url,
+	    	  type:'POST',
+	    	  contentType:'application/json',
+	    	  data:JSON.stringify(post)
+	    	  	})
+	    	  	
+	      .done((response)=>{
+	    	  if(response.result=='ok'){
+	    		  alert('게시글이 등록되었습니다.');
+	    		  windows.location.href='/posts'
+	    	  } else {
+	    		  alert('등록되지않은 계정입니다.');
+	    	  }
+	    	})
+	    	.fail((response)=>{
+	    		alert('등록되지 않았습니다.');
+	    	});
+	      });
+	     });
+	</script>
+	
+	
 </body>
 </html>

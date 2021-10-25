@@ -2,29 +2,32 @@ package com.example.anyboard.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-// User Å¬·¡½º¶ó°í »ý°¢ÇÏ¸é µÊ ! 
+// User Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ ! 
 
-/*  JPA ´Â @Table ¾ÈÇÏ¸é ¸â¹ö Å×ÀÌºíÀÌ ´ë¼Ò¹®ÀÚ·Î ±¸ºÐÇÔ 
- *	= ( DB Å×ÀÌºíÀÌ¸§°ú ÇöÀç Å¬·¡½º ÀÌ¸§ÀÌ ´Ù¸£¸é ¼±¾ðÇØÁÖ¾î¾ß ÇÔ )
+/*  JPA ï¿½ï¿½ @Table ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½Ò¹ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+ *	= ( DB ï¿½ï¿½ï¿½Ìºï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ ï¿½ï¿½ )
  *
- *  MyBatis´Â »ó°ü¾øÀ½
+ *  MyBatisï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 
 @Entity
 @Table(name="member")
 public class Member {
 	
-	// getter setter primarykey Ãß°¡
-	// »ý¼ºÀÚ Ãß°¡ 
+	// getter setter primarykey ï¿½ß°ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ 
 	
-	// DB ³» member Å×ÀÌºí Çà ¼±¾ð
+	// DB ï¿½ï¿½ member ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Id
-	@Column(length=30)  	// µ¥ÀÌÅÍ °ª ±æÀÌÁ¶Á¤ 
 	private String memberId;
+	@Column(length=10)  	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	private String password;
+	private String newPassword;
 	
 	public String getMemberId() {
 		return memberId;
@@ -36,6 +39,19 @@ public class Member {
 		return password;
 	}
 	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+	
+	
+	Member() {}
+	Member(String memberId, String password) {
+		this.memberId = memberId;
 		this.password = password;
 	}
 	

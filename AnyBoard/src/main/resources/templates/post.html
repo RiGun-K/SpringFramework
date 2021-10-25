@@ -1,10 +1,73 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="EUC-KR">
+<head xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+	<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+ 	<!-- BootStemp -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	�Խñ� ����Ʈ ���
+	 <!-- postId 가 있다면 -->
+	 <div th:if="${post}!=null">
+	 	<!-- postId 는 숨긴다. -->
+	    <input type="hidden" id="postId" th:value="${post.postId}">
+	    	<label for="title">제목</label>
+	    <input type="text" id="title" th:value="${post.title}"><br>
+	    	<label for="body">본문</label>
+	    <textarea id="body" rows="4" th:text="${post.body}"></textarea>
+	    <br><br>
+	    
+	    <label for="memberId">작성자 아이디</label>
+	    	<input type="text" id="memberId"><br>
+	    <label for="password">비밀번호</label>
+	   		<input type="password" id="password">
+	    <button id="delete">삭제하기</button>
+  	 </div>
+  	 
+  	 
+  	 <div th:unless="${post}!=null">
+    	<h3>존재하지 않는 글입니다.</h3>
+  	 </div>
+  	 
+  <!-- 아이디,비밀번호를 받아서 넘긴다 -->
+  <script>
+  $(()=>{
+	  $('#delete').on('click', ()=>{
+		  const memberId=$('#memberId').val();
+		  const password=$('#password').val();
+		  if(memberId==''||password==''){
+			  alert('게시글을 삭제하려면 작성자의 아이디와 비밀번호를 입력해야 합니다.');
+			  return;
+		  }
+		  
+		  const url = '/api/posts/'+ $('#postId').val();
+		  const member={
+				  memberId:memberId,
+				  password:password
+		  }
+		  $.ajax({
+         url:url,
+         type:'DELETE',
+         contentType:'application/json',
+         data:JSON.stringify(member)
+		  })
+		  .done((response)=>{
+			  if(response.result=='ok'){
+           alert('게시글이 삭제되었습니다.');
+           window.location.href='/posts'
+         } else {
+           alert('삭제하지 못했습니다.');
+         }
+		  })
+		  .fail((response)=>{
+			  alert('삭제하지 못했습니다.');
+		  });
+	  });
+  });
+  </script>
 </body>
 </html>

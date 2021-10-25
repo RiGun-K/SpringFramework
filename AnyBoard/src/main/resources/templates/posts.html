@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="EUC-KR">
+<head xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+	<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+ 	<!-- BootStemp -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	�� �󼼺��� 
+	<table class="table table-bordered">
+    	<thead>
+      		<tr class="success">
+		        <td>글번호</td>
+		        <td>제목</td>
+		        <td>작성일</td>
+		  	</tr>
+    	</thead>
+    	<tbody>
+    		<!-- Model로 받은 posts를 post변수로 사용 -->
+      		<tr th:each="post : ${posts}">
+      			<!-- post 클래스의 칼럼들의 데이터를 받아온다, 클릭시 해당 postId 주소로 이동 -->
+		        <td><a th:text="${post.postId}" th:href="@{/posts/{id}(id=${post.postId})}"></a></td>
+		        <td><a th:text="${post.title}" th:href="@{/posts/{id}(id=${post.postId})}"></a></td>
+		        <td th:text="${#temporals.format(post.savedTime, 'yyyy/MM/dd HH:mm:ss')}"></td>
+		    </tr>
+    	</tbody>
+  	</table>
 </body>
 </html>
