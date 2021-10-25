@@ -35,4 +35,38 @@ public class Crew {
 	@OneToMany
 	@JoinColumn(name="crew")
 	private List<Menu> menus;
+
+	public int getCrewid() {
+		return crewid;
+	}
+
+	public void setCrewid(int crewid) {
+		this.crewid = crewid;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Menu> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(List<Menu> menus) {
+		this.menus = menus;
+	}
+	
+	
 }

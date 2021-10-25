@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.mylist.data.Crew;
 import com.example.mylist.data.Point;
 import com.example.mylist.data.User;
 import com.example.mylist.mapper.CrewMapper;
@@ -31,6 +32,7 @@ public class WebController {
 	
 	@GetMapping("/crews")
 	public String crews(Model model) {
+//		List<Crew> crews = crewMapper.findAll();
 		model.addAttribute("crews", crewMapper.findAll());
 		return "crews";
 	}

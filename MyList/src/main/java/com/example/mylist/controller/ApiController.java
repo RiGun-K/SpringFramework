@@ -8,11 +8,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.mylist.data.Menu;
 import com.example.mylist.data.Point;
 import com.example.mylist.data.User;
+import com.example.mylist.mapper.MenuMapper;
 import com.example.mylist.repository.UserRepository;
+
 
 @RestController
 @RequestMapping("/api")
@@ -20,6 +24,17 @@ public class ApiController {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private com.example.mylist.service.MenuService menuService;
+	
+	@GetMapping("/menus")
+	public List<Menu> getMenus(@RequestParam(name="name", required=false)String name) {
+		if(name==null) 
+			return menuService.findAllMenu();
+		else
+			return menuService.findMenuByName(name);
+	}
 	
 	// RestController = View 가 아닌 Data 나 객체를 반환
 	

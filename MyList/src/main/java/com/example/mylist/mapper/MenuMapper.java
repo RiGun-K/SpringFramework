@@ -10,4 +10,5 @@ import com.example.mylist.data.Menu;
 public interface MenuMapper {
 
 	public List<Menu> findAll();
+	public List<Menu> findByName(String name);
 }
