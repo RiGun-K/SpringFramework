@@ -15,5 +15,5 @@ public interface CrewMapper {
 	public List<Crew> findAll();
 	
 	@Select("select * from crew where nickname=#{name}")
-	public List<Crew> findByNickname(@Param("name") String name);
+	public List<Crew> findByNickname(@Param("name") String nickname);
 }
