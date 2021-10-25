@@ -16,8 +16,8 @@
 			const name=$('#username').val();
 			const path='/api/adduser';
 			const json = JSON.stringify({
-				'userid':userid,
-				'name':name
+				userid:userid,
+				name:name
 			});
 			$.ajax({
 				url:path,

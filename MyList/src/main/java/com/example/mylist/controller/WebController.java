@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mylist.data.Point;
 import com.example.mylist.data.User;
+import com.example.mylist.mapper.CrewMapper;
 import com.example.mylist.repository.MenuRepository;
 import com.example.mylist.repository.UserRepository;
 
@@ -21,8 +22,17 @@ public class WebController {
 
 	@Autowired
 	UserRepository userRepository;
-	@Autowired
+	@Autowired 
 	MenuRepository menuRepository;
+	
+	@Autowired
+	CrewMapper crewMapper;
+	
+	@GetMapping("/crews")
+	public String crews(Model model) {
+		model.addAttribute("crews", crewMapper.findAll());
+		return "crews";
+	}
 	
 	@GetMapping
 	public String index(Model model) {
@@ -37,6 +47,7 @@ public class WebController {
 	}
 	@PostMapping("/update")
 	public String updateResult(
+			// 입력받은 Input 값을 받아와서 Model 객체로 만듬
 			@RequestParam(name="userid") String userid,
 			@RequestParam(name="point") int point,
 			Model model) {
@@ -63,6 +74,7 @@ public class WebController {
 	
 	@GetMapping("/menus")
 	public String menus(@RequestParam(required=false) String name, Model model) {
+		// 
 		if(name==null || name.isEmpty())
 			model.addAttribute("menus", menuRepository.findAll());
 		else
