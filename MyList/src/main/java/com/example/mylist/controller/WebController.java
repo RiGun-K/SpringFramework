@@ -33,6 +33,8 @@ public class WebController {
 	@GetMapping("/crews")
 	public String crews(Model model) {
 //		List<Crew> crews = crewMapper.findAll();
+		
+		// Mapper 패키지의 객체 가져오기 
 		model.addAttribute("crews", crewMapper.findAll());
 		return "crews";
 	}

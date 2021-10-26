@@ -11,6 +11,7 @@ import com.example.mylist.data.Crew;
 @Mapper
 public interface CrewMapper {
 
+	// SQL 문 작성
 	@Select("select * from crew")
 	public List<Crew> findAll();
 	
