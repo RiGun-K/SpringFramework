@@ -9,5 +9,5 @@
 				name like CONCAT('%', #{name}, '%')
 			</if>
 		</where>
-	</select>
+</select>
 </mapper>

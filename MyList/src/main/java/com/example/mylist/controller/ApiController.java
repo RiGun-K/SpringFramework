@@ -16,6 +16,7 @@ import com.example.mylist.data.Point;
 import com.example.mylist.data.User;
 import com.example.mylist.mapper.MenuMapper;
 import com.example.mylist.repository.UserRepository;
+import com.example.mylist.service.MenuService;
 
 
 @RestController
@@ -26,7 +27,7 @@ public class ApiController {
 	private UserRepository userRepository;
 	
 	@Autowired
-	private com.example.mylist.service.MenuService menuService;
+	private MenuService menuService;
 	
 	@GetMapping("/menus")
 	public List<Menu> getMenus(@RequestParam(name="name", required=false)String name) {
@@ -35,6 +36,7 @@ public class ApiController {
 		else
 			return menuService.findMenuByName(name);
 	}
+
 	
 	// RestController = View 가 아닌 Data 나 객체를 반환
 	

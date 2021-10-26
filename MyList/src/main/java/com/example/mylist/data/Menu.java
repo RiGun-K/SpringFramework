@@ -39,6 +39,30 @@ public class Menu {
 		this.name = name;
 		this.price = price;
 	}
+	public int getMenuid() {
+		return menuid;
+	}
+	public void setMenuid(int menuid) {
+		this.menuid = menuid;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public Crew getCrew() {
+		return crew;
+	}
+	public void setCrew(Crew crew) {
+		this.crew = crew;
+	}
 	
 	
 }
