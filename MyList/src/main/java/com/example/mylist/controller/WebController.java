@@ -51,6 +51,10 @@ public class WebController {
 		model.addAttribute("username", "hello");
 		return "test";
 	}
+	@GetMapping("/home")
+	public String home() {
+		return "home";
+	}
 	
 	@GetMapping("/update")
 	public String updateView() {
