@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mylist.mapper.MenuMapper">
-	<select id="findAll" resultType="com.example.mylist.data.Menu"> select * from menu </select>
-	<select id="findByName" resultType="com.example.mylist.data.Menu">
-		select * from menu
+	<resultMap type="Menu" id="menuMap">
+		<id property="menuid" column="menuid"/>
+		<result property="name" column="name"/>
+		<result property="price" column="price"/>
+		<association property="crew" column="crew" javaType="Crew" resultMap="crewResult"/>
+	</resultMap>
+	
+	<resultMap id="crewResult" type="Crew">
+		<id property="crewid" column="crewid" />
+		<result property="nickname" column="nickname" />
+		<result property="name" column="crew_name" />
+	</resultMap>
+	
+	<select id="findAll" resultMap="menuMap"> 
+		select m.*, c.crewid, c.nickname, c.name as crew_name from menu m
+		left join crew c on m.crew=c.crewid
+	</select>
+		
+	<select id="findByName" resultMap="menuMap">
+		select m.*, c.crewid, c.nickname, c.name as crew_name from menu m
+		left join crew c on m.crew=c.crewid
 		<where>
 			<if test="name!=null">
 				name like CONCAT('%', #{name}, '%')

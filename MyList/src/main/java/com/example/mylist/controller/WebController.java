@@ -46,6 +46,12 @@ public class WebController {
 		return "index";
 	}
 	
+	@GetMapping("/test")
+	public String test(Model model) {
+		model.addAttribute("username", "hello");
+		return "test";
+	}
+	
 	@GetMapping("/update")
 	public String updateView() {
 		return "updatePoint";
