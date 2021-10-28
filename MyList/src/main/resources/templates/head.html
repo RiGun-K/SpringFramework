@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!-- head 태그를 파라미터로 만들어 타 html에 그대로 전달할 수 있다. -->
 <head th:fragment="head (title)">
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
  crossorigin="anonymous"></script>
-<title th:text="${title}"></title>
+<title th:replace="${title}"></title>
 </head>
 <body>
 

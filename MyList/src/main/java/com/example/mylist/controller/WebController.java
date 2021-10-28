@@ -39,7 +39,7 @@ public class WebController {
 		return "crews";
 	}
 	
-	@GetMapping
+	@GetMapping("/index")
 	public String index(Model model) {
 		model.addAttribute("title", "깃허브 연동 완료 ");
 		model.addAttribute("img1", "images/dd.jpg");

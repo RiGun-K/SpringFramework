@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{head::head('Home')}"></head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<!-- head.html 의 <script>태그를 받고 프래그먼트를 부를때 파라미터로 태그 자체를 준다 -->
+<head th:replace="~{head::head(~{::title})}">
+<!-- title 태그를 작성하여 위 title로 태그자체를 부여 -->
+<title th:text="Parameter"></title>
+</head>
+
 <body>
 
 </body>
