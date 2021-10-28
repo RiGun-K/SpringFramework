@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+th:replace="~{layout::layout(~{::title}, ~{}, ~{::#content})}">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Menus</title>
 </head>
 <body>
+<div id="content">
 <h2>Menus</h2>
 	<table>
 		<thead>
@@ -22,5 +24,6 @@
 			</tr>
 		</tbody>
 	</table>
+	</div>
 </body>
 </html>
