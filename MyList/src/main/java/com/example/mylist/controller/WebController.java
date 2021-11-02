@@ -46,6 +46,11 @@ public class WebController {
 		return "index";
 	}
 	
+	@GetMapping("/head")
+	public String head() {
+		return "head";
+	}
+	
 	@GetMapping("/test")
 	public String test(Model model) {
 		model.addAttribute("username", "hello");
