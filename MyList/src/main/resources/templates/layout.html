@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 th:fragment="layout(title,link,content)">
 <head>
 <meta charset="UTF-8">
@@ -15,6 +16,14 @@ th:fragment="layout(title,link,content)">
 <a href="/menus">Menus</a>
 <a href="/crews">Crews</a>
 <a href="/mypoint">MyPoint</a>
+<a sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
+<th:block sec:authorize="isAuthenticated()">
+	<a sec:authorize="hasRole('admin')" th:href="@{/adduser}">사용자 추가</a>
+	<span sec:authentication="name"></span>님
+	<form name="logoutForm" th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out"/>
+	</form>
+</th:block>
 <br><br>
 <div th:replace="${content}"></div>
 </body>

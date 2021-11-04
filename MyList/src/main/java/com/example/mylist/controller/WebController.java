@@ -1,6 +1,7 @@
 package com.example.mylist.controller;
 
 import java.util.Optional;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,9 @@ public class WebController {
 	CrewMapper crewMapper;
 	
 	@GetMapping("/crews")
-	public String crews(Model model) {
+	public String crews(Model model, Principal user) {
 //		List<Crew> crews = crewMapper.findAll();
-		
+		if(user!=null) System.out.println(user.getName());
 		// Mapper 패키지의 객체 가져오기 
 		model.addAttribute("crews", crewMapper.findAll());
 		return "crews";
@@ -95,6 +96,14 @@ public class WebController {
 				model.addAttribute("point", p);
 			}
 			return "mypoint";
+	}
+	
+	@GetMapping("/mypoint")
+	public String points(Principal p) {
+		if(p!=null)
+			return "redirect:mypoint/"+p.getName();
+		else
+			return "redirect:home";
 	}
 	
 	
