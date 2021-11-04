@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetails).passwordEncoder(passwordEncoder());
+		// 비밀번호 input 값에 "1111" 로 설정 
 		System.out.println(passwordEncoder().encode("1111"));
 	}
 	
@@ -44,19 +45,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				// .antMatchers("/mypoint/**").hasAnyAuthority
+				// mypoint/** 페이지는 admin, user 만 접속허용
 				.antMatchers("/mypoint/**").hasAnyRole("admin", "user")
+				// adduser, update/** 페이지는 admin 만 접속허용
 				.antMatchers("/adduser/**", "/update/**").hasRole("admin")
+				// 모두허용
 				.antMatchers("/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
+				// 로그인페이지는 /login 
 				.loginPage("/login")
 				.defaultSuccessUrl("/")
 				.permitAll()
 				.and()
 			.logout()
 				.logoutUrl("/logout")
+				// 로그아웃 하면 "/" 로 이동
 				.logoutSuccessUrl("/")
 				.invalidateHttpSession(true)
 				.and()
