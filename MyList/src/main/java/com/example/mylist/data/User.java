@@ -15,6 +15,11 @@ public class User {
 	private String name;
 	private int point;
 	
+	@Column(length=100)
+	private String password="1111";
+	@Column(length=100)
+	private String role="user";
+	
 	public User() {}
 	public User(String userid, String name) {
 		// TODO Auto-generated constructor stub
@@ -38,6 +43,18 @@ public class User {
 	}
 	public void setPoint(int point) {
 		this.point = point;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	
