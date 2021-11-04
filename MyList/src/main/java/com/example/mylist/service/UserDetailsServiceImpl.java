@@ -37,7 +37,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				.authorities(auths)
 				.roles(dbuser.get().getRole())
 				.build();
-		return null;
+		return ud;
 	}
 
 }
