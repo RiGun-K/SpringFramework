@@ -20,7 +20,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private UserRepository userRepository;
 	
 	@Override
+										// 입력받은 userid 값을 가져옴
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// User 테이블의 username 값 ( userid ) 과 비교
 		Optional<com.example.mylist.data.User> dbuser = userRepository.findById(username);
 		if(dbuser.isEmpty()) {
 			throw new UsernameNotFoundException("Invalid username");
@@ -28,6 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		
 		List<GrantedAuthority> auths = new ArrayList<>();
 		auths.add(new SimpleGrantedAuthority("QUERY"));
+		// Role 열이 admin 이면 쓰기 사용가능 
 		if(dbuser.get().getRole().equals("admin"))
 			auths.add(new SimpleGrantedAuthority("WRITE"));
 		
