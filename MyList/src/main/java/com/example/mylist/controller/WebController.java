@@ -56,9 +56,20 @@ public class WebController {
 		model.addAttribute("username", "hello");
 		return "test";
 	}
+	
 	@GetMapping("/home")
 	public String home() {
 		return "home";
+	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
+	@GetMapping("/denied")
+	public String denied() {
+		return "denied";
 	}
 	
 	@GetMapping("/update")
